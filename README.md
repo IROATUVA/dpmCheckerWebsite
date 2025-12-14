@@ -2,7 +2,7 @@
 A complete system for managing membership dues payments and verifying Dues-Paying Member (DPM) status for IRO
 Created by Anirudh Chinthakindi (IRO Treasurer 2026)
 
-## 📋 Table of Contents
+## Table of Contents
 - [Overview](#overview)
 - [Components](#components)
 - [Setup Instructions](#setup-instructions)
@@ -12,17 +12,17 @@ Created by Anirudh Chinthakindi (IRO Treasurer 2026)
 - [Maintenance](#maintenance)
 - [Troubleshooting](#troubleshooting)
 
-## 🎯 Overview
+## Overview
 This system consists of two main components:
 1. **Dues Payment Page** - Allows members to pay dues via Venmo with pre-filled payment information
 2. **DPM Verification Page** - Validates member payment status against a Google Sheet database and Gives Access to Reimbursement Form
 
-## 📦 Components
+## Components
 - `venmo_site_CodeBlock.html` - Venmo payment interface
 - `dpmChecker_site_CodeBlock.html` - DPM status checker interface
 - `dpmChecker.gs` - Google Apps Script for backend verification
 
-## 🚀 Setup Instructions
+## Setup Instructions
 #### Configuration
 The payment page is pre-configured with:
 - **Venmo Account**: `@IROatUVA`
