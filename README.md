@@ -114,7 +114,7 @@ const SHEET_NAME = 'Sheet';             // Replace with your actual sheet name
    ```
 5. Replace `YOUR_GOOGLE_FORM_URL_HERE` with your reimbursement Google Form URL for that semester
 
-## 📊 Google Sheet Structure
+## Google Sheet Structure
 ### Required Format
 Your Google Sheet **must** follow this exact structure:
 #### Row 1 (Headers):
