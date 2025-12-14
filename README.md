@@ -70,7 +70,7 @@ Before setting up the DPM Checker, you need:
    Copy the long string between `/d/` and `/edit`
 
 4. Note your **Sheet Name** (visible at the bottom of the sheet, usually "Sheet1" or "Sheet")
-### 3. Google Apps Script Configuration
+### 2. Google Apps Script Configuration
 
 #### Step 1: Create the Apps Script
 1. Open your DPM Google Sheet
@@ -214,5 +214,5 @@ At the start of each semester:
 This project was created by Anirudh Chinthakindi as the Treasurer of the International Relations Organization at the University of Virginia for 2026.
 ---
 
-**Last Updated**: December 20245 
+**Last Updated**: December 2025 
 **Maintained By**: IRO Treasurer
