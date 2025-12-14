@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay IRO Dues</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #2d3748;
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            color: #718096;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .date-display {
+            color: #4a5568;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            color: #4a5568;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .options-container {
+            margin: 30px 0;
+        }
+        
+        .options-title {
+            color: #4a5568;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .payment-options {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .option-card {
+            border: 3px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .option-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+        
+        .option-card.selected {
+            border-color: #667eea;
+            background: #f7fafc;
+        }
+        
+        .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .option-title {
+            font-weight: 700;
+            color: #2d3748;
+            font-size: 18px;
+        }
+        
+        .option-price {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 24px;
+        }
+        
+        .venmo-button {
+            width: 100%;
+            padding: 16px;
+            background: #008CFF;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .venmo-button:hover {
+            background: #0077d4;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 140, 255, 0.4);
+        }
+        
+        .venmo-button:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .error-message {
+            color: #e53e3e;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        .info-box {
+            background: #edf2f7;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .info-box p {
+            color: #4a5568;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💳 Pay Your IRO Dues</h1>
+        <p class="subtitle">Select your membership duration and pay via Venmo</p>
+        <p class="date-display" id="currentDate"></p>
+        
+        <div class="info-box">
+            <p><strong>Note:</strong> After clicking "Pay with Venmo", you'll be taken to Venmo where the amount and description will be pre-filled. Make sure to enter your name in the field below first!</p>
+        </div>
+        
+        <div class="input-group">
+            <label for="nameInput">Your Full Name *</label>
+            <input 
+                type="text" 
+                id="nameInput" 
+                placeholder="e.g., John Smith" 
+                required
+            >
+        </div>
+        
+        <div class="options-container">
+            <div class="options-title">SELECT MEMBERSHIP DURATION</div>
+            <div class="payment-options">
+                <div class="option-card" data-amount="10" data-duration="One Semester">
+                    <div class="option-header">
+                        <span class="option-title">One Semester</span>
+                        <span class="option-price">$10</span>
+                    </div>
+                </div>
+                
+                <div class="option-card" data-amount="15" data-duration="Two Semesters">
+                    <div class="option-header">
+                        <span class="option-title">Two Semesters</span>
+                        <span class="option-price">$15</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="venmo-button" id="venmoButton" disabled>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21.5 6.5c-.5 2.5-3.5 10.5-5 14.5h-5l-3-14.5 4.5-.5 1.5 10 3-10z"/>
+            </svg>
+            Pay with Venmo
+        </button>
+        
+        <div class="error-message" id="errorMessage">Please enter your name and select a payment option</div>
+
+        <div class="info-box" style="margin-top: 25px;">
+            <p><strong>Don't have Venmo?</strong> If you wish to pay by an alternative method, please email the IRO Treasurer at: <a href="mailto:treasurer@iroatuva.org" style="color: #667eea; text-decoration: none; font-weight: 600;">treasurer@iroatuva.org</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Display current date
+        const dateDisplay = document.getElementById('currentDate');
+        const today = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        dateDisplay.textContent = today.toLocaleDateString('en-US', options);
+        
+        let selectedAmount = null;
+        let selectedDuration = null;
+        
+        const nameInput = document.getElementById('nameInput');
+        const venmoButton = document.getElementById('venmoButton');
+        const errorMessage = document.getElementById('errorMessage');
+        const optionCards = document.querySelectorAll('.option-card');
+        
+        // Handle option selection
+        optionCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove selected class from all cards
+                optionCards.forEach(c => c.classList.remove('selected'));
+                
+                // Add selected class to clicked card
+                this.classList.add('selected');
+                
+                // Store selected values
+                selectedAmount = this.dataset.amount;
+                selectedDuration = this.dataset.duration;
+                
+                // Update button state
+                updateButtonState();
+            });
+        });
+        
+        // Update button state when name is entered
+        nameInput.addEventListener('input', updateButtonState);
+        
+        function updateButtonState() {
+            const name = nameInput.value.trim();
+            if (name && selectedAmount) {
+                venmoButton.disabled = false;
+                errorMessage.style.display = 'none';
+            } else {
+                venmoButton.disabled = true;
+            }
+        }
+        
+        // Handle Venmo payment
+        venmoButton.addEventListener('click', function() {
+            const name = nameInput.value.trim();
+            
+            if (!name) {
+                errorMessage.textContent = 'Please enter your name';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            if (!selectedAmount) {
+                errorMessage.textContent = 'Please select a payment option';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            // Create Venmo deep link
+            const venmoUsername = 'IROatUVA';
+            const note = encodeURIComponent(`${name} IRO Dues`);
+            const amount = selectedAmount;
+            
+            // Venmo deep link format
+            const venmoUrl = `venmo://paycharge?txn=pay&recipients=${venmoUsername}&amount=${amount}&note=${note}`;
+            
+            // For web fallback
+            const venmoWebUrl = `https://venmo.com/${venmoUsername}?txn=pay&amount=${amount}&note=${note}`;
+            
+            // Try to open Venmo app first, fallback to web
+            window.location.href = venmoUrl;
+            
+            // Fallback to web after a short delay if app doesn't open
+            setTimeout(() => {
+                window.open(venmoWebUrl, '_blank');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
