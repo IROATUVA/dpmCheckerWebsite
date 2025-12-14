@@ -153,7 +153,7 @@ Your Google Sheet **must** follow this exact structure:
 - **No empty rows** - keep all data contiguous starting from Row 2
 - **Keep it updated** - Add new members immediately after payment confirmation
 
-## 🔧 Maintenance
+## Maintenance
 ### Updating Each Semester
 #### 1. Update Reimbursement Form Link
 **Every semester**, you must update the reimbursement form link:
@@ -176,7 +176,7 @@ At the start of each semester:
 - Update the `SHEET_NAME` in your Google Apps Script
 - Redeploy the script (Deploy → Manage deployments → Edit → New version)
 
-## 🔍 Troubleshooting
+## Troubleshooting
 ### DPM Checker Issues
 **"Not Found" errors when member should be listed:**
 1. Check spelling in the Google Sheet - must match exactly
