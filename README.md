@@ -1,5 +1,5 @@
-# IRO Dues Payment & DPM Verification System
-A complete system for managing membership dues payments and verifying Dues-Paying Member (DPM) status for IRO
+# IRO Dues Payment & DPM Verification/Reimbursement System
+A complete system for managing membership dues payments and verifying Dues-Paying Member (DPM) status for IRO/Giving Access to Reimbursement System
 Created by Anirudh Chinthakindi (IRO Treasurer 2026)
 
 ## Table of Contents
